@@ -20,10 +20,12 @@ requirements:
   build:
     - toolchain
     - python
+    - backports
     - xz 5.2.*
 
   run:
     - python
+    - backports
     - xz 5.2.*
 
 test:
