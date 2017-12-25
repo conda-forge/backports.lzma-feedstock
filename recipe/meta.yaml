@@ -19,7 +19,10 @@ source:
 
 build:
   number: 1
-  script: python setup.py install
+  script:
+    - python setup.py build_ext --compiler=mingw32                    # [win32 and py2k]
+    - python setup.py build_ext --compiler=mingw32 --define=MS_WIN64  # [win64 and py2k]
+    - python setup.py install
 
 requirements:
   build:
