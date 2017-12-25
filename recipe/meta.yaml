@@ -18,14 +18,18 @@ build:
 requirements:
   build:
     - toolchain
+    - m2w64-toolchain  # [win and py2k]
     - python
+    - libpython        # [win and py2k]
     - backports
-    - xz 5.2.*
+    - m2w64-xz 5.2.*   # [win and py2k]
+    - xz 5.2.*         # [unix or (win and py3k)]
 
   run:
     - python
     - backports
-    - xz 5.2.*
+    - m2w64-xz 5.2.*   # [win and py27]
+    - xz 5.2.*         # [unix or (win and py3k)]
 
 test:
   source_files:
