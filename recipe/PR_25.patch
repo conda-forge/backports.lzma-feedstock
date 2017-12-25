@@ -1,0 +1,99 @@
+From b808eb63b3e4187d8aa689ad36f6e3fc4dad15ef Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sun, 24 Dec 2017 01:16:08 +0530
+Subject: [PATCH 3/6] Fix 'name' of extension
+
+According to the documentation of distutils, 'name' is:
+    the full name of the extension, including any packages - ie. not a
+    filename or pathname, but Python dotted name
+
+This patch replaces the pathname with the actual Python dotted name.
+Without this, a build on Windows fails with:
+
+Cannot export initbackports/lzma/_lzma: symbol not defined
+---
+ setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git setup.py setup.py
+index 55c6847..477b9f4 100644
+--- setup.py
++++ setup.py
+@@ -30,7 +30,7 @@
+ packages = ["backports", "backports.lzma"]
+ prefix = sys.prefix
+ home = os.path.expanduser("~")
+-extens = [Extension('backports/lzma/_lzma',
++extens = [Extension('backports.lzma._lzma',
+                     ['backports/lzma/_lzmamodule.c'],
+                     libraries = ['lzma'],
+                     include_dirs = [
+
+From 826436a1e0c29d78f19af27760fd004cdf81ebc8 Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sun, 24 Dec 2017 01:35:12 +0530
+Subject: [PATCH 4/6] Compute name of lzma library
+
+For *nix-y builds (including mingw-64), -lzma would suffize. But for
+Visual Studio builds, the complete name for the .lib file is required.
+---
+ setup.py | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git setup.py setup.py
+index 477b9f4..1058510 100644
+--- setup.py
++++ setup.py
+@@ -27,12 +27,14 @@
+     sys.exit(1)
+ print("This is backports.lzma version %s" % __version__)
+ 
++lzmalib = '%slzma'%('lib' if sys.platform == 'win32' else '')
++
+ packages = ["backports", "backports.lzma"]
+ prefix = sys.prefix
+ home = os.path.expanduser("~")
+ extens = [Extension('backports.lzma._lzma',
+                     ['backports/lzma/_lzmamodule.c'],
+-                    libraries = ['lzma'],
++                    libraries = [lzmalib],
+                     include_dirs = [
+                         os.path.join(prefix, 'include'),
+                         os.path.join(home, 'include'),
+
+From 4d3cba962f4e87da0db373a891195603e9a96875 Mon Sep 17 00:00:00 2001
+From: Nehal J Wani <nehaljw.kkd1@gmail.com>
+Date: Sun, 24 Dec 2017 03:39:10 +0530
+Subject: [PATCH 5/6] Add compiler flag to realign stack for 32bit gcc
+
+---
+ setup.py | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git setup.py setup.py
+index 1058510..31d18ae 100644
+--- setup.py
++++ setup.py
+@@ -29,6 +29,14 @@
+ 
+ lzmalib = '%slzma'%('lib' if sys.platform == 'win32' else '')
+ 
++class build_ext_subclass(build_ext):
++    def build_extensions(self):
++        c = self.compiler.compiler_type
++        if c == "mingw32" and sys.maxsize <= 2**32:
++           for e in self.extensions:
++               e.extra_compile_args = ["-mstackrealign"]
++        build_ext.build_extensions(self)
++
+ packages = ["backports", "backports.lzma"]
+ prefix = sys.prefix
+ home = os.path.expanduser("~")
+@@ -87,6 +95,6 @@
+     namespace_packages = ['backports'],
+     ext_modules = extens,
+     cmdclass = {
+-        'build_ext': build_ext,
++        'build_ext': build_ext_subclass,
+     },
+ )

@@ -10,23 +10,35 @@ source:
   fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
   sha256: {{ sha256 }}
+  patches:
+    ############################################################
+    # Add a patch to build on Windows.                         #
+    # xref: https://github.com/peterjc/backports.lzma/pull/25  #
+    ############################################################
+    - PR_25.patch
 
 build:
-  number: 1
-  skip: true  # [win]
-  script: python setup.py install
+  number: 2
+  script:
+    - python setup.py build_ext --compiler=mingw32                    # [win32 and py2k]
+    - python setup.py build_ext --compiler=mingw32 --define=MS_WIN64  # [win64 and py2k]
+    - python setup.py install
 
 requirements:
   build:
     - toolchain
+    - m2w64-toolchain  # [win and py2k]
     - python
+    - libpython        # [win and py2k]
     - backports
-    - xz 5.2.*
+    - m2w64-xz 5.2.*   # [win and py2k]
+    - xz 5.2.*         # [unix or (win and py3k)]
 
   run:
     - python
     - backports
-    - xz 5.2.*
+    - m2w64-xz 5.2.*   # [win and py27]
+    - xz 5.2.*         # [unix or (win and py3k)]
 
 test:
   source_files:
