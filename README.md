@@ -14,14 +14,16 @@ Summary: Backport of Python 3.3's 'lzma' module for XZ/LZMA compressed files.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/backports.lzma-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/backports.lzma-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/backports.lzma-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/backports.lzma-feedstock)
-Windows: [![AppVeyor](https://ci.appveyor.com/api/projects/status/github/conda-forge/backports.lzma-feedstock?svg=True)](https://ci.appveyor.com/project/conda-forge/backports-lzma-feedstock/branch/master)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/backports.lzma-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/backports.lzma-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/backports.lzma-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/backports.lzma-feedstock)
+[![Windows](https://img.shields.io/appveyor/ci/conda-forge/backports.lzma-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/conda-forge/backports-lzma-feedstock/branch/master)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/backports.lzma/badges/version.svg)](https://anaconda.org/conda-forge/backports.lzma)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/backports.lzma/badges/downloads.svg)](https://anaconda.org/conda-forge/backports.lzma)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-backports.lzma-green.svg)](https://anaconda.org/conda-forge/backports.lzma) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/backports.lzma.svg)](https://anaconda.org/conda-forge/backports.lzma) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/backports.lzma.svg)](https://anaconda.org/conda-forge/backports.lzma) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/backports.lzma.svg)](https://anaconda.org/conda-forge/backports.lzma) |
 
 Installing backports.lzma
 =========================
