@@ -1,5 +1,5 @@
 c_compiler:
-- toolchain_c
+- vs2008
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -7,6 +7,9 @@ pin_run_as_build:
   xz:
     max_pin: x.x
 python:
-- '3.5'
+- '2.7'
 xz:
 - '5.2'
+zip_keys:
+- - python
+  - c_compiler
