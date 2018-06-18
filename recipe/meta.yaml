@@ -19,19 +19,20 @@ build:
 
 requirements:
   build:
-    - toolchain
-    - m2w64-toolchain  # [win and py2k]
+    - {{ compiler('c') }}        # [unix]
+    - {{ compiler('m2w64_c') }}  # [win]
+  host:
     - python
     - libpython        # [win and py2k]
     - backports
     - m2w64-xz 5.2.*   # [win and py2k]
-    - xz 5.2.*         # [unix or (win and py3k)]
+    - xz               # [unix or (win and py3k)]
 
   run:
     - python
     - backports
     - m2w64-xz 5.2.*   # [win and py27]
-    - xz 5.2.*         # [unix or (win and py3k)]
+    - xz               # [unix or (win and py3k)]
 
 test:
   source_files:
