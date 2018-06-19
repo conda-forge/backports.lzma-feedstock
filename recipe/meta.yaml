@@ -19,8 +19,7 @@ build:
 
 requirements:
   build:
-    - {{ compiler('c') }}        # [not (win and py2k)]
-    - {{ compiler('m2w64_c') }}  # [win and py2k]
+    - {{ compiler('c') }}
   host:
     - python
     - libpython                  # [win and py2k]
