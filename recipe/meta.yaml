@@ -23,16 +23,16 @@ requirements:
     - {{ compiler('m2w64_c') }}  # [win and py2k]
   host:
     - python
-    - libpython        # [win and py2k]
+    - libpython                  # [win and py2k]
     - backports
-    - m2w64-xz 5.2.*   # [win and py2k]
-    - xz               # [unix or (win and py3k)]
+    - m2w64-xz 5.2.*             # [win and py2k]
+    - xz                         # [not (win and py2k)]
 
   run:
     - python
     - backports
-    - m2w64-xz 5.2.*   # [win and py27]
-    - xz               # [unix or (win and py3k)]
+    - m2w64-xz 5.2.*             # [win and py27]
+    - xz                         # [not (win and py2k)]
 
 test:
   source_files:
