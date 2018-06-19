@@ -1,7 +1,5 @@
 c_compiler:
-- vs2008
-m2w64_c_compiler:
-- m2w64-toolchain
+- vs2015
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -9,7 +7,7 @@ pin_run_as_build:
   xz:
     max_pin: x.x
 python:
-- '2.7'
+- '3.6'
 xz:
 - '5.2'
 zip_keys:
