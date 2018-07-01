@@ -1,6 +1,6 @@
 {% set name = "backports.lzma" %}
-{% set version = "0.0.11" %}
-{% set sha256 = "f6d1664285db415649746cfe76b73876908c45da79fe19493d29d1c940677c32" %}
+{% set version = "0.0.12" %}
+{% set sha256 = "5b43bcb912120fe27b95158720ad5f02e8814f9da79d71520e3c2ab14b50b269" %}
 
 package:
   name: {{ name|lower }}
