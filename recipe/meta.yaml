@@ -14,7 +14,7 @@ source:
 build:
   number: 0
   script:
-    - python setup.py build_ext --compiler=mingw32 -I%LIBRARY_INC%  # [win and py2k]
+    - python setup.py build_ext --compiler=mingw32  # [win and py2k]
     - python setup.py install
 
 requirements:
