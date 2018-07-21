@@ -14,7 +14,7 @@ source:
 build:
   number: 0
   script:
-    - python setup.py build_ext --compiler=mingw32  # [win and py2k]
+    - python setup.py build_ext --compiler=mingw32  # [win and py27]
     - python setup.py install
 
 requirements:
@@ -22,16 +22,16 @@ requirements:
     - {{ compiler('c') }}
   host:
     - python
-    - libpython                  # [win and py2k]
+    - libpython                  # [win and py27]
     - backports
-    - m2w64-xz 5.2.*             # [win and py2k]
-    - xz                         # [not (win and py2k)]
+    - m2w64-xz 5.2.*             # [win and py27]
+    - xz                         # [not (win and py27)]
 
   run:
     - python
     - backports
     - m2w64-xz 5.2.*             # [win and py27]
-    - xz                         # [not (win and py2k)]
+    - xz                         # [not (win and py27)]
 
 test:
   source_files:
