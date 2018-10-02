@@ -14,11 +14,8 @@ source:
 build:
   number: 0
   script:
-    - >-                                                # [win and py27]
-          python setup.py build_ext --compiler=mingw32  # [win and py27]
-          -I%LIBRARY_PREFIX%\\mingw-w64\\include        # [win and py27]
-          -L%LIBRARY_PREFIX%\\mingw-w64\\bin            # [win and py27]
-    - python setup.py install
+    - {{ PYTHON }} setup.py build_ext --compiler=mingw32 --include-dirs "%LIBRARY_PREFIX%\mingw-w64\include" --library-dirs "%LIBRARY_PREFIX%\mingw-w64\lib"  # [win and py27]
+    - {{ PYTHON }} setup.py install
 
 requirements:
   build:
