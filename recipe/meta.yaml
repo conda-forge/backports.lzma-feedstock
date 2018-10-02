@@ -33,6 +33,7 @@ requirements:
     - backports
     - m2w64-xz 5.2.*             # [win and py27]
     - xz                         # [not (win and py27)]
+    - future                     # [py27]
 
 test:
   source_files:
