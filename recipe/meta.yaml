@@ -14,24 +14,26 @@ source:
 build:
   number: 0
   script:
-    - python setup.py build_ext --compiler=mingw32  # [win and py2k]
-    - python setup.py install
+    - {{ PYTHON }} setup.py build_ext --compiler=mingw32 --include-dirs "%LIBRARY_PREFIX%\mingw-w64\include" --library-dirs "%LIBRARY_PREFIX%\mingw-w64\lib"  # [win and py27]
+    - {{ PYTHON }} setup.py install
 
 requirements:
   build:
-    - toolchain
-    - m2w64-toolchain  # [win and py2k]
+    - {{ compiler('c') }}        # [not (win and py27)]
+    - {{ compiler('m2w64_c') }}  # [win and py27]
+  host:
     - python
-    - libpython        # [win and py2k]
+    - libpython                  # [win and py27]
     - backports
-    - m2w64-xz 5.2.*   # [win and py2k]
-    - xz 5.2.*         # [unix or (win and py3k)]
+    - m2w64-xz 5.2.*             # [win and py27]
+    - xz                         # [not (win and py27)]
 
   run:
     - python
     - backports
-    - m2w64-xz 5.2.*   # [win and py27]
-    - xz 5.2.*         # [unix or (win and py3k)]
+    - m2w64-xz 5.2.*             # [win and py27]
+    - xz                         # [not (win and py27)]
+    - future                     # [py27]
 
 test:
   source_files:
