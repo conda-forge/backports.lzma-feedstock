@@ -3,7 +3,7 @@ About backports.lzma
 
 Home: https://github.com/peterjc/backports.lzma
 
-Package license: BSD 3-Clause
+Package license: BSD-3-Clause
 
 Feedstock license: BSD 3-Clause
 
