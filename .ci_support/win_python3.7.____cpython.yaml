@@ -1,11 +1,9 @@
 c_compiler:
-- vs2015
+- vs2017
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
-m2w64_c_compiler:
-- m2w64-toolchain
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -13,9 +11,6 @@ pin_run_as_build:
   xz:
     max_pin: x.x
 python:
-- '3.8'
+- 3.7.* *_cpython
 xz:
 - '5.2'
-zip_keys:
-- - python
-  - c_compiler

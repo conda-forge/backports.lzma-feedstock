@@ -12,7 +12,7 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 1
+  number: 2
   script:
     - {{ PYTHON }} setup.py build_ext --compiler=mingw32 --include-dirs "%LIBRARY_PREFIX%\mingw-w64\include" --library-dirs "%LIBRARY_PREFIX%\mingw-w64\lib"  # [win and py27]
     - {{ PYTHON }} setup.py install
@@ -46,7 +46,7 @@ test:
 
 about:
   home: https://github.com/peterjc/backports.lzma
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: Backport of Python 3.3's 'lzma' module for XZ/LZMA compressed files.
