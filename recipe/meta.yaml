@@ -46,7 +46,7 @@ test:
 
 about:
   home: https://github.com/peterjc/backports.lzma
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
   summary: Backport of Python 3.3's 'lzma' module for XZ/LZMA compressed files.
