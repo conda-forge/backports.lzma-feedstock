@@ -12,7 +12,8 @@ source:
   sha256: {{ sha256 }}
 
 build:
-  number: 3
+  number: 4
+  skip: True  # [py>=33]
   script:
     - {{ PYTHON }} setup.py build_ext --compiler=mingw32 --include-dirs "%LIBRARY_PREFIX%\mingw-w64\include" --library-dirs "%LIBRARY_PREFIX%\mingw-w64\lib"  # [win and py27]
     - {{ PYTHON }} setup.py install
